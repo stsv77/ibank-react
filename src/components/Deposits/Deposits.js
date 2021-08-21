@@ -4,7 +4,7 @@ import Modal from '../../ui/Modal/Modal';
 import NewDeposit from './NewDeposit/NewDeposit';
 import Loader from '../../ui/Loader/Loader';
 import {getJSON} from '../../utils/http';
-import {rub} from '../../utils/format';
+import {rubMod} from '../../utils/format';
 
 const Deposits = () => {
   const [newDepositModalOpen, setNewDepositModalOpen] = useState(false);
@@ -79,7 +79,7 @@ const Deposits = () => {
         {data?.map((deposit) => <div data-testid="deposit" key={deposit?.id}>
             <span data-testid="title">{deposit?.title}</span>
             <span data-testid="finish">До {deposit?.finish}</span>
-            <span data-testid="balance">{rub(deposit?.balance)}</span>
+            <span data-testid="balance">{rubMod(deposit?.balance)}</span>
           </div>
         )}
       </>

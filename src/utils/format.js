@@ -8,3 +8,10 @@ export const rub = (value) => currency(value, {
   separator: ' ',
 });
 
+export const rubMod = (value) => {
+  if (value < 0 ) {
+    return `-${rub(Math.abs(value))}`;
+  }
+  return rub(value);
+};
+

@@ -20,12 +20,14 @@ const Template = (args) => {
 export const Regular = Template.bind({});
 Regular.args = {
   value: '10000',
+  miniTitle: 'Название поля',
 };
 
 export const Error = Template.bind({});
 Error.args = {
   value: '10000',
-  error: 'Сумма должна быть больше 100 000'
+  error: 'Сумма должна быть больше 100 000',
+  miniTitle: 'Название поля',
 };
 
 export const Focused = (args) => {
@@ -45,4 +47,5 @@ export const Focused = (args) => {
 };
 Focused.args = {
   value: '10000',
+  miniTitle: 'Название поля',
 };

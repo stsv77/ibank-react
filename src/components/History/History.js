@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {getJSON} from '../../utils/http';
 import Loader from '../../ui/Loader/Loader';
 import ContextButton from '../../ui/ContextButton/ContextButton';
-import {rub} from '../../utils/format';
+import {rubMod} from '../../utils/format';
 
 const History = (props) => {
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,7 @@ const History = (props) => {
     <>
       {data?.map((operation) => <div data-testid="operation" key={operation?.id}>
           <span data-testid="title">{operation.title}</span>
-          {operation.amount > 0? <span data-testid="amount">{rub(operation.amount)}</span> : <span data-testid="amount">-{rub(operation.amount * -1)}</span>}
+          <span data-testid="amount">{rubMod(operation.amount)}</span>
         </div>
       )}
     </>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import DepositOption from './DepositOption/DepositOption';
 import PropTypes from 'prop-types';
+import ContextButton from '../../../ui/ContextButton/ContextButton';
 
 const NewDeposit = (
   {
@@ -29,17 +30,20 @@ const NewDeposit = (
 
   const handleDepositSelect = (evt, deposit) => {
     setDeposit(deposit);
-    // setStep(2);
+    setStep(2);
     // TODO: just simplify
     if (typeof onComplete !== 'function') {
       return;
     }
-    onComplete();
+    //onComplete();
+  };
+  const hadleBack = () => {
+    setStep((prevState) => prevState - 1);
   };
 
   if (step === 1) {
     return (
-      <>
+      <div data-testid="selection">
         <h3>Выберите вклад</h3>
         {deposits.map((deposit) => <DepositOption
           key={deposit.id}
@@ -48,14 +52,29 @@ const NewDeposit = (
         >
           {deposit.title} - {deposit.percent}
         </DepositOption>)}
-      </>
+      </div>
     )
   }
 
-  return (
-    <div>
+  if (step === 2) {
+    return (
+      <div data-testid="params">
+        <h3>{deposit.title}</h3>
+        <ContextButton view="accent">Открыть вклад</ContextButton>
+        <ContextButton onClick={hadleBack}>Назад</ContextButton>
+      </div>
+    )
 
-    </div>
+  }
+
+  if (step === 3) {
+
+  }
+
+  return (
+    <>
+
+    </>
   );
 };
 

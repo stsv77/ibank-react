@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Loader from '../../ui/Loader/Loader';
-import {rub} from '../../utils/format';
+import {rubMod, rub} from '../../utils/format';
 import ContextButton from '../../ui/ContextButton/ContextButton';
 import {getJSON} from '../../utils/http';
 import styles from './Bonuses.module.css';
@@ -73,7 +73,7 @@ const Bonuses = () => {
 
   return (
     <>
-      <p className={styles.cashback}>Cashback: {rub(data?.balance)}</p>
+      <p className={styles.cashback}>Cashback: {rubMod(data?.balance)}</p>
     </>
   );
 };

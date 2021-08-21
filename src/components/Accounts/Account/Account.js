@@ -1,13 +1,14 @@
 import React from 'react';
 import Card from '../Card/Card';
 import PropTypes from 'prop-types';
+import {rubMod} from '../../../utils/format';
 
 const Account = ({item}) => {
   return (
     <div>
       {item?.title}
       {item?.number}
-      {item?.balance}
+      {rubMod(item?.balance)}
       {item?.cards?.map((card) => <Card key={card.id} item={card}/>)}
     </div>
   );
