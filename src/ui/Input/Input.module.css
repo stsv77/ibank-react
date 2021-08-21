@@ -1,0 +1,31 @@
+.base {
+  display: block;
+  width: 100%;
+  height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--primary-border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+.base:focus {
+  border: 1px solid var(--primary-border-focused-color);
+}
+
+.base:disabled {
+  cursor: not-allowed;
+}
+
+.regular {
+  composes: base;
+}
+
+.error {
+  composes: base;
+  border: 1px solid var(--error-border-color)
+}
+
+.message {
+  font-size: 10px;
+  color: var(--accent-text-color);
+}

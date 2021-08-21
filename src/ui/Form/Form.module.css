@@ -1,0 +1,10 @@
+.fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: opacity ease 100ms;
+}
+
+.fieldset:disabled {
+  opacity: 0.9;
+}

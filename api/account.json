@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1001,
+    "title": "Расчётный счёт",
+    "number": "XXXXXXXXXXXXXXXXXXX",
+    "balance": 99999.99
+  },
+  {
+    "id": 1002,
+    "title": "Текущий счёт",
+    "number": "XXXXXXXXXXXXXXXXXXX",
+    "balance": 99999.99,
+    "cards": [
+      {
+        "id": 2001,
+        "title": "VISA Rewards Noname",
+        "type": "VISA",
+        "number": "4779 86** **** 9999"
+      },
+      {
+        "id": 2002,
+        "title": "VISA #MOZHNOVSE Digital",
+        "type": "VISA",
+        "number": "4779 86** **** 9999"
+      }
+    ]
+  }
+]
+

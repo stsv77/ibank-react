@@ -1,0 +1,79 @@
+.container {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.caption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--primary-border-color);
+}
+
+.caption::before {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 1px;
+  content: "";
+  transition: width 200ms;
+  background-color: var(--accent-border-color);
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 200ms ease;
+  text-transform: uppercase;
+  color: var(--primary-header-color);
+}
+
+.toggle {
+  width: 20px;
+  height: 20px;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+  transition-property: transform, background-color;
+  border-radius: 20px;
+  background: #ffffff url("arrow.png") 50% 0 no-repeat;
+}
+
+.content {
+  overflow: hidden;
+  max-height: 100vh;
+  transition: all 200ms ease;
+  opacity: 1;
+}
+
+.caption:hover::before {
+  width: 100%;
+}
+
+.caption:hover {
+  color: var(--accent-text-color);
+}
+
+.caption:hover .title {
+  color: var(--accent-text-color);
+}
+
+.caption:hover .toggle {
+  background: var(--accent-border-color) url("arrow.png") 50% -20px no-repeat;
+}
+
+.containerCollapsed .toggle {
+  transform: rotate(180deg);
+}
+
+.containerCollapsed .content {
+  height: 0;
+  max-height: 0;
+  opacity: 0;
+}
