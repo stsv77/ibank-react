@@ -20,7 +20,9 @@ const Dashboard = () => {
             <Accounts/>
           </Panel>
           <Panel title="Вклады">
-            <Deposits/>
+            <div data-testid="deposits">
+              <Deposits/>
+            </div>
           </Panel>
         </aside>
         <main className={styles.main}/>
