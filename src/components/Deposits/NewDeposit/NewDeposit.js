@@ -27,7 +27,7 @@ const NewDeposit = (
       percent: 'До 2,40%',
     },
   ]);
-  const options = [
+  const [period, setPeriod] = useState([
     {
       value: 3,
       text: '3 месяца',
@@ -48,14 +48,14 @@ const NewDeposit = (
       value: 18,
       text: '18 месяцев',
     },
-  ];
+  ]);
 
   const [step, setStep] = useState(1);
   const [deposit, setDeposit] = useState(null);
   const [valueAmount, setValueAmount] = useState(500000);
   const [valuePeriod, setValuePeriod] = useState(6);
   const [error, setError] = useState(false);
-  const [styleButton, setStyleButton] = useState('accent');
+  const [styleButton, setStyleButton] = useState('accentForm');
   const ref = useRef();
 
   useEffect(() => {
@@ -67,7 +67,6 @@ const NewDeposit = (
   const handleDepositSelect = (evt, deposit) => {
     setDeposit(deposit);
     setStep(2);
-    // TODO: just simplify
     if (typeof onComplete !== 'function') {
       return;
     }
@@ -77,27 +76,26 @@ const NewDeposit = (
     setStep((prevState) => prevState - 1);
     setValueAmount(500000);
     setError(false);
-    setStyleButton('accent');
+    setStyleButton('accentForm');
   };
   const handleAmountChange = (evt) => {
     const {value} = evt.target;
     const valueToNumber = Number(value);
-    //debugger;
     if (Number.isNaN(valueToNumber)) {
       setError('Неверное значение. Введите число, например: 500000');
-      setStyleButton('disabled');
+      setStyleButton('disabledForm');
     } else if (valueToNumber < 15000) {
       setError(`Минимальная сумма вклада 15 000 ₽. Введите сумму не меньше 15 000 ₽`);
-      setStyleButton('disabled');
+      setStyleButton('disabledForm');
     } else if (valueToNumber > 300000000) {
       setError(`
       Максимальная сумма вклада 300 000 000 ₽. Введите сумму не больше 300 000 000 ₽.
       Вы можете открыть два и больше вкладов
       `);
-      setStyleButton('disabled');
+      setStyleButton('disabledForm');
     } else {
       setError(false);
-      setStyleButton('accent');
+      setStyleButton('accentForm');
     }
     setValueAmount(value);
   };
@@ -110,9 +108,8 @@ const NewDeposit = (
     setValuePeriod(value);
   };
   const handleSend = (evt) => {
-
+    //TODO: send data
   };
-
 
   if (step === 1) {
     return (
@@ -142,10 +139,10 @@ const NewDeposit = (
           onChange={handleAmountChange}/>
         {/*<Input miniTitle="Срок вклада" value={valuePeriod} onChange={handlePeriodChange}/>*/}
         <div>
-          <Select name="period" miniTitle="Срок вклада" options={options} onChange={handleChange}/>
+          <Select name="period" miniTitle="Срок вклада" options={period} onChange={handleChange}/>
         </div>
         <ContextButton view={styleButton} onClick={handleSend}>Открыть вклад</ContextButton>
-        <ContextButton onClick={hadleBack}>Назад</ContextButton>
+        <ContextButton view={'regularForm'} onClick={hadleBack}>Назад</ContextButton>
       </div>
     )
 

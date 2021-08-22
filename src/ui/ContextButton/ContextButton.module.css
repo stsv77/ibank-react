@@ -44,3 +44,18 @@
   cursor: not-allowed;
   composes: base;
 }
+
+.regularForm {
+  composes: regular;
+  width: 100%;
+}
+
+.accentForm {
+  composes: accent;
+  width: 100%;
+}
+
+.disabledForm {
+  composes: disabled;
+  width: 100%;
+}
