@@ -29,8 +29,8 @@ const Template = (args) => {
 
   return (
     <Form {...args} onSubmit={handleSubmit}>
-      <Input value={amount} onChange={handleAmountChange}/>
-      <Input value={period} onChange={handlePeriodChange}/>
+      <Input miniTitle="Сумма вклада" value={amount} onChange={handleAmountChange} />
+      <Input miniTitle="Срок вклада" value={period} onChange={handlePeriodChange} />
       <ContextButton>Ok</ContextButton>
     </Form>
   );

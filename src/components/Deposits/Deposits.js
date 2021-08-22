@@ -17,7 +17,8 @@ const Deposits = () => {
     setError(null);
     setData(null);
     try {
-      setData(await getJSON('/deposits'));
+      //setData(await getJSON('/deposits'));
+      setData([]);
     } catch (e) {
       setData(null);
       setError(e);

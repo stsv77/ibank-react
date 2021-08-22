@@ -30,7 +30,7 @@ ContextButton.propTypes = {
   /**
    * button type
    */
-  view: PropTypes.oneOf(['regular', 'accent']),
+  view: PropTypes.oneOf(['regular', 'accent', 'disabled',]),
   /**
    * button content
    */

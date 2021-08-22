@@ -20,3 +20,9 @@ Accent.args = {
   children: 'Открыть вклад'
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  view: 'disabled',
+  children: 'Открыть вклад'
+};
+
