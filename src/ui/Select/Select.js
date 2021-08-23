@@ -9,6 +9,7 @@ const Select = (
     onChange,
   }
 ) => {
+
   const handleChange = (evt) => {
     if (typeof handleChange !== 'function') {
       return;

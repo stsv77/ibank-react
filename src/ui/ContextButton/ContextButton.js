@@ -5,6 +5,7 @@ import styles from './ContextButton.module.css';
 const ContextButton = (
   {
     view = 'regular',
+    disabled = false,
     children,
     onClick,
   }
@@ -20,6 +21,7 @@ const ContextButton = (
     <button
       className={styles[view]}
       onClick={handleClick}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -30,7 +32,7 @@ ContextButton.propTypes = {
   /**
    * button type
    */
-  view: PropTypes.oneOf(['regular', 'accent', 'disabled',]),
+  view: PropTypes.oneOf(['regular', 'accent']),
   /**
    * button content
    */

@@ -17,8 +17,7 @@ const Deposits = () => {
     setError(null);
     setData(null);
     try {
-      //setData(await getJSON('/deposits'));
-      setData([]);
+      setData(await getJSON('/deposits'));
     } catch (e) {
       setData(null);
       setError(e);
@@ -66,7 +65,7 @@ const Deposits = () => {
     return (
       <div data-testid="no-deposits">
         <p>У вас нет вкладов</p>
-        <ContextButton onClick={handleNewDeposit}>Открыть вклад</ContextButton>
+        <ContextButton view={'accentForm'} onClick={handleNewDeposit}>Открыть вклад</ContextButton>
         {newDepositModalOpen && <Modal onClose={handleNewDepositModalClose}>
           <NewDeposit onComplete={handleNewDepositComplete}/>
         </Modal>}
@@ -83,6 +82,10 @@ const Deposits = () => {
             <span data-testid="balance">{rubMod(deposit?.balance)}</span>
           </div>
         )}
+        <ContextButton view={'accentForm'} onClick={handleNewDeposit}>Открыть вклад</ContextButton>
+        {newDepositModalOpen && <Modal onClose={handleNewDepositModalClose}>
+          <NewDeposit onComplete={handleNewDepositComplete}/>
+        </Modal>}
       </>
     )
   }

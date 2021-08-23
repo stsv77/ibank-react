@@ -22,7 +22,8 @@ Accent.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  view: 'disabled',
+  view: 'regular',
+  disabled: 'disabled',
   children: 'Открыть вклад'
 };
 

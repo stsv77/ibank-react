@@ -7,7 +7,6 @@
   transition: all 200ms ease;
   text-transform: uppercase;
   border-radius: 4px;
-  margin-top: 10px;
 }
 
 .base:active, .base:hover {
@@ -37,25 +36,14 @@
   composes: base;
 }
 
-.disabled {
-  color: var(--primary-text-color);
-  border: 1px solid var(--primary-border-color);
-  background: var(--primary-background-color);
-  cursor: not-allowed;
-  composes: base;
-}
-
 .regularForm {
   composes: regular;
   width: 100%;
+  margin-top: 10px;
 }
 
 .accentForm {
   composes: accent;
   width: 100%;
-}
-
-.disabledForm {
-  composes: disabled;
-  width: 100%;
+  margin-top: 10px;
 }
