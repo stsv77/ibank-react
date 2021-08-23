@@ -8,4 +8,7 @@
 
 .container:hover, .container:active {
   border-color: var(--primary-border-focused-color);
+  color: var(--accent-text-color);
 }
+
+

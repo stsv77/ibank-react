@@ -7,7 +7,7 @@ const Input = React.forwardRef((
     name,
     type = 'text',
     value = '',
-    error = '',
+    error = false,
     miniTitle = '',
     onChange,
   }, ref

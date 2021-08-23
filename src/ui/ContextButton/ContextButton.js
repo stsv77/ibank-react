@@ -21,7 +21,7 @@ const ContextButton = (
     <button
       className={styles[view]}
       onClick={handleClick}
-      disabled={disabled}
+      disabled={disabled? 'disabled' : disabled}
     >
       {children}
     </button>

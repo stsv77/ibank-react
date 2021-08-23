@@ -5,6 +5,7 @@ import styles from './Select.module.css';
 const Select = (
   {
     options,
+    name,
     miniTitle = '',
     onChange,
   }
@@ -20,8 +21,8 @@ const Select = (
   return (
     <>
       <p className={styles.miniTitle}>{miniTitle}</p>
-      <select className={styles.select} onChange={handleChange}>
-        {options?.map((option) => <option value={option.value}>{option.text}</option>)}
+      <select name={name} className={styles.select} onChange={handleChange}>
+        {options?.map((option) => <option key={option?.id} value={option?.value}>{option?.text}</option>)}
       </select>
     </>
   );
