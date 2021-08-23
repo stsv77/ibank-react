@@ -6,7 +6,6 @@ import Input from '../../../ui/Input/Input';
 import Select from '../../../ui/Select/Select';
 import {postJSON} from '../../../utils/http';
 import Loader from '../../../ui/Loader/Loader';
-import {rub} from '../../../utils/format';
 
 const NewDeposit = (
   {
@@ -69,12 +68,6 @@ const NewDeposit = (
     }
   }, [step]);
 
-  /* useEffect(() => {
-     if (step === 3) {
-       loadData(data);
-     }
-   }, [step]);*/
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -95,11 +88,7 @@ const NewDeposit = (
 
   const handleDepositSelect = (evt, deposit) => {
     setDeposit(deposit);
-    setStep(2);
-    if (typeof onComplete !== 'function') {
-      return;
-    }
-    //onComplete();
+    setStep((prevState) => prevState + 1);
   };
   const handleAmountChange = (evt) => {
     const {value} = evt.target;
@@ -122,33 +111,23 @@ const NewDeposit = (
     }
     setAmount(value);
   };
-
-  /*
-  TODO: del this block
-  const handlePeriodChange = (evt) => {
-    const {value} = evt.target;
-    setPeriod(value);
-  };
-  */
-
   const handlePeriodChange = (evt) => {
     const {value} = evt.target;
     setPeriod(value);
   };
   const handleBack = () => {
-    setStep((prevState) => prevState - 1);
     setAmount(500000);
     setErrorStyle(false);
     setDisabled(false);
-    //debugger;
+    setStep((prevState) => prevState - 1);
   };
   const handleSend = (evt) => {
-    setStep((prevState) => prevState + 1);
     setDepositParams({
       depositId: deposit.id,
       amount: Number(amount),
       period: Number(period),
     });
+    setStep((prevState) => prevState + 1);
     loadData();
   };
   const handleRetry = async () => {
@@ -156,42 +135,12 @@ const NewDeposit = (
   };
   const handleBackToDeposit = () => {
     setStep((prevState) => prevState - 1);
-    debugger;
   };
   const handleFinish = () => {
+    if (typeof onComplete !== 'function') {
+      return;
+    }
     onComplete();
-  }
-
-  if (loading) {
-    return (
-      <div data-testid="loading">
-        <p>Данные отправляются. Ожидаем подтверждение операции.</p>
-        <Loader/>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div data-testid="error">
-        <p>Не удалось загрузить данные</p>
-        <ContextButton
-          name="retry"
-          view={'accentForm'}
-          onClick={handleRetry}
-        >
-          Повторить попытку
-        </ContextButton>
-        <ContextButton
-          name="previous"
-          view={'regularForm'}
-          onClick={handleBackToDeposit}
-        >
-          Назад
-        </ContextButton>
-
-      </div>
-    );
   }
 
   if (step === 1) {
@@ -248,21 +197,47 @@ const NewDeposit = (
 
   }
 
-  if (data) {
+  if (step === 3) {
+    if (data) {
+      return (
+        <div data-testid="ok">
+          <h3>{deposit.title}</h3>
+          <div className="successful"></div>
+          <ContextButton view="accentForm" onClick={handleFinish}>ГОТОВО</ContextButton>
+        </div>
+      );
+    }
+  }
+
+  if (loading) {
     return (
-      <div data-testid="ok">
-        <h3>{deposit.title}</h3>
-        <span>Сумма вклада: {rub(depositParams.amount)}</span>
-        <br/>
-        <span>Срок вклада, месяцев: {depositParams.period}</span>
-        <h3>Успешно</h3>
-        <ContextButton view="accent" onClick={handleFinish}>ГОТОВО</ContextButton>
+      <div data-testid="loading">
+        <p>Данные отправляются. Ожидаем подтверждение операции.</p>
+        <Loader/>
       </div>
     );
   }
 
-  if (step === 3) {
-    //debugger;
+  if (error) {
+    return (
+      <div data-testid="error">
+        <p>Не удалось загрузить данные</p>
+        <ContextButton
+          name="retry"
+          view={'accentForm'}
+          onClick={handleRetry}
+        >
+          Повторить попытку
+        </ContextButton>
+        <ContextButton
+          name="previous"
+          view={'regularForm'}
+          onClick={handleBackToDeposit}
+        >
+          Назад
+        </ContextButton>
+      </div>
+    );
   }
 
   return (
