@@ -159,7 +159,6 @@ const NewDeposit = (
   }
 
   if (step === 2) {
-    //debugger;
     return (
       <div data-testid="params">
         <h3>{deposit.title}</h3>
@@ -239,12 +238,6 @@ const NewDeposit = (
       </div>
     );
   }
-
-  return (
-    <>
-
-    </>
-  );
 };
 
 NewDeposit.propTypes = {
