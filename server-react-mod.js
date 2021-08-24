@@ -117,12 +117,12 @@ const {createServer} = require('http'); function checkMethod(_0x4ef7e1) { const 
 
     router.register('GET', '/api/deposits', (req, res) => {
       res.setHeader('Content-Type', 'application/json');
-      if (Math.random() > 0.5) {
+
         res.end(JSON.stringify(deposits));
         return;
-      }
-      res.end(JSON.stringify([]));
-    }, error, slow);
+
+
+    },slow);
 
     router.register('POST', '/api/deposits', (req, res) => {
       const data = req.body;
@@ -194,7 +194,7 @@ const {createServer} = require('http'); function checkMethod(_0x4ef7e1) { const 
 
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({status: 'ok'}));
-    }, error, slow, error, slow, json);
+    }, json);
 
     router.register('GET', '/api/credits', (req, res) => {
       res.setHeader('Content-Type', 'application/json');

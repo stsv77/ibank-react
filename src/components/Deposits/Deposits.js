@@ -11,11 +11,13 @@ const Deposits = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const [needLoad, setNeedLoad] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
     setError(null);
     setData(null);
+    setNeedLoad(false);
     try {
       setData(await getJSON('/deposits'));
     } catch (e) {
@@ -31,6 +33,7 @@ const Deposits = () => {
   };
   const handleNewDepositModalClose = () => {
     setNewDepositModalOpen(false);
+    needLoad ? loadData() : setNeedLoad(false);
   };
   const handleNewDepositComplete = () => {
     setNewDepositModalOpen(false);
@@ -38,6 +41,9 @@ const Deposits = () => {
   };
   const handleRetry = async () => {
     await loadData();
+  };
+  const handleFinish = () => {
+    setNeedLoad(true);
   };
 
   useEffect(() => {
@@ -67,7 +73,7 @@ const Deposits = () => {
         <p>У вас нет вкладов</p>
         <ContextButton view={'accentForm'} onClick={handleNewDeposit}>Открыть вклад</ContextButton>
         {newDepositModalOpen && <Modal onClose={handleNewDepositModalClose}>
-          <NewDeposit onComplete={handleNewDepositComplete}/>
+          <NewDeposit onComplete={handleNewDepositComplete} onFinish={handleFinish}/>
         </Modal>}
       </div>
     );
@@ -84,11 +90,12 @@ const Deposits = () => {
         )}
         <ContextButton view={'accentForm'} onClick={handleNewDeposit}>Открыть вклад</ContextButton>
         {newDepositModalOpen && <Modal onClose={handleNewDepositModalClose}>
-          <NewDeposit onComplete={handleNewDepositComplete}/>
+          <NewDeposit onComplete={handleNewDepositComplete} onFinish={handleFinish}/>
         </Modal>}
       </>
-    )
+    );
   }
+
 };
 
 Deposits.propTypes = {};

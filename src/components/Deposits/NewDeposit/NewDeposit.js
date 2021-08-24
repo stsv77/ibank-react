@@ -11,6 +11,7 @@ import Loader from '../../../ui/Loader/Loader';
 const NewDeposit = (
   {
     onComplete,
+    onFinish,
   }
 ) => {
   const [loading, setLoading] = useState(false);
@@ -132,9 +133,9 @@ const NewDeposit = (
     setStep((prevState) => prevState - 1);
   };
 
-  const handleSubmit = async (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    await sendData(
+    sendData(
       {
         depositId: deposit.id,
         amount: Number(amount),
@@ -144,8 +145,8 @@ const NewDeposit = (
     setStep((prevState) => prevState + 1);
   };
 
-  const handleRetry = async () => {
-    await sendData(
+  const handleRetry = () => {
+    sendData(
       {
         depositId: deposit.id,
         amount: Number(amount),
@@ -255,6 +256,11 @@ const NewDeposit = (
   }
 
   if (step === 3) {
+    if (typeof onFinish !== 'function') {
+      return;
+    }
+    onFinish();
+
     return (
       <div data-testid="ok">
         <h3>{deposit.title}</h3>
