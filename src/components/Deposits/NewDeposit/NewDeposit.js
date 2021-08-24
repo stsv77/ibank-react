@@ -49,8 +49,8 @@ const NewDeposit = (
   ]);
   const [deposit, setDeposit] = useState(null);
   const [amount, setAmount] = useState(500000);
-
   const [period, setPeriod] = useState(3);
+
   const [disableButtonAmount, setDisableButtonAmount] = useState(false);
   const [disableButtonPeriod, setDisableButtonPeriod] = useState(false);
   const [errorAmount, setErrorAmount] = useState(null);
@@ -77,6 +77,7 @@ const NewDeposit = (
     setError(false);
     setAmount(deposit.minAmount);
     setPeriod(deposit.minPeriod);
+
     setStep((prevState) => prevState + 1);
   };
 
@@ -139,6 +140,7 @@ const NewDeposit = (
         amount: Number(amount),
         period: Number(period),
       });
+
     setStep((prevState) => prevState + 1);
   };
 
